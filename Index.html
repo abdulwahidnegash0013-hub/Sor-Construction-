@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sor Construction - Rental, Sales & Construction Services</title>
+<style>
+:root {
+--primary: #f39c12;
+--dark: #121418;
+--card-bg: #1e222d;
+--light: #ffffff;
+--gray: #e0e0e0;
+--border: #333947;
+--overlay: rgba(0, 0, 0, 0.85);
+--blue: #1e88e5;
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+background-color: var(--dark);
+color: var(--light);
+line-height: 1.6;
+padding-bottom: 30px;
+}
+
+/* Header */
+header {
+background-color: #0b0c0e;
+padding: 15px 5%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+position: sticky;
+top: 0;
+z-index: 100;
+border-bottom: 3px solid var(--primary);
+}
+
+.logo {
+font-size: 20px;
+font-weight: 800;
+color: var(--light);
+text-transform: uppercase;
+}
+
+.logo span { color: var(--primary); }
+
+.call-head {
+background-color: var(--primary);
+color: #000;
+padding: 6px 14px;
+border-radius: 20px;
+text-decoration: none;
+font-weight: bold;
+font-size: 13px;
+}
+
+/* Hero */
+.hero {
+padding: 30px 5% 20px 5%;
+text-align: center;
+}
+
+.hero h1 {
+font-size: 26px;
+color: var(--light);
+margin-bottom: 10px;
+}
+
+.hero h1 span { color: var(--primary); }
+
+.hero p {
+font-size: 14px;
+color: #aaa;
+max-width: 600px;
+margin: 0 auto 25px auto;
+}
+
+/* Grid Services */
+.portal-grid {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 15px;
+max-width: 1000px;
+margin: 0 auto;
+}
+
+.portal-card {
+background-color: var(--card-bg);
+border: 1px solid var(--border);
+border-left: 5px solid var(--primary);
+padding: 20px;
+border-radius: 8px;
+cursor: pointer;
+text-align: left;
+transition: transform 0.2s, background-color 0.2s;
+display: flex;
+align-items: center;
+gap: 15px;
+}
+
+.portal-card:active {
+transform: scale(0.98);
+background-color: #282e3d;
+}
+
+.portal-icon {
+font-size: 32px;
+background: rgba(243, 156, 18, 0.1);
+padding: 10px;
+border-radius: 8px;
+}
+
+.portal-card h3 {
+font-size: 18px;
+color: var(--primary);
+margin-bottom: 3px;
+}
+
+.portal-card p {
+font-size: 13px;
+color: var(--gray);
+}
+
+.manager-btn-wrap {
+text-align: center;
+margin: 25px 0;
+}
+
+.btn-manager {
+background-color: var(--blue);
+color: white;
+padding: 14px 25px;
+border: none;
+border-radius: 6px;
+font-weight: bold;
+font-size: 15px;
+cursor: pointer;
+width: 90%;
+max-width: 400px;
+box-shadow: 0 4px 12px rgba(30, 136, 229, 0.3);
+}
+
+/* MODALS (Pop-ups) /
+.modal-overlay {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: var(--overlay);
+z-index: 2000;
+justify-content: center;
+align-items: flex-end; / Mobile friendly sheet style */
+}
+
+@media (min-width: 600px) {
+.modal-overlay {
+align-items: center;
+}
+}
+
+.modal-body {
+background-color: #1a1d24;
+width: 100%;
+max-width: 550px;
+max-height: 90vh;
+overflow-y: auto;
+border-radius: 16px 16px 0 0;
+padding: 25px 20px;
+border: 1px solid var(--border);
+position: relative;
+box-shadow: 0 -5px 25px rgba(0,0,0,0.5);
+}
+
+@media (min-width: 600px) {
+.modal-body {
+border-radius: 12px;
+}
+}
+
+.close-modal {
+position: absolute;
+top: 15px;
+right: 20px;
+font-size: 26px;
+color: #888;
+cursor: pointer;
+font-weight: bold;
+}
+
+.modal-body h2 {
+font-size: 20px;
+color: var(--primary);
+margin-bottom: 15px;
+padding-bottom: 8px;
+border-bottom: 1px solid var(--border);
+}
+
+/* Forms */
+.form-group {
+margin-bottom: 14px;
+text-align: left;
+}
+
+.form-group label {
+display: block;
+font-size: 13px;
+color: var(--gray);
+margin-bottom: 5px;
+font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+width: 100%;
+padding: 12px;
+background-color: #242834;
+border: 1px solid var(--border);
+border-radius: 6px;
+color: #fff;
+font-size: 14px;
+outline: none;
+}
+
+.form-group input:focus, .form-group select:focus {
+border-color: var(--primary);
+}
+
+.submit-btn {
+width: 100%;
+background-color: var(--primary);
+color: #000;
+padding: 14px;
+border: none;
+border-radius: 6px;
+font-weight: bold;
+font-size: 16px;
+cursor: pointer;
+margin-top: 10px;
+}
+
+footer {
+text-align: center;
+padding: 30px 15px;
+background-color: #0b0c0e;
+margin-top: 40px;
+font-size: 13px;
+color: #777;
+border-top: 1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation Header -->
+<header>
+<div class="logo">Sor <span>Construction</span></div>
+<a href="tel:+251930853279" class="call-head">📞 0930853279</a>
+</header>
+
+<!-- Main Section -->
+<section class="hero">
+<h1>የእርስዎ የተሟላ <span>የግንባታ መፍትሔ</span></h1>
+<p>የሚፈልጉትን አገልግሎት ይምረጡ፤ ፎርሙን በመሙላት መረጃዎትን በቅጽበት ይላኩ።</p>
+
+<div class="portal-grid">
+
+<!-- Option 1: አከራይ -->
+<div class="portal-card" onclick="openForm('lessorModal')">
+<div class="portal-icon">🚜</div>
+<div>
+<h3>አከራይ</h3>
+<p>የግንባታ ማሽን ወይም ተሽከርካሪ ማከራየት እፈልጋለሁ</p>
+</div>
+</div>
+
+<!-- Option 2: ሻጭ -->
+<div class="portal-card" onclick="openForm('sellerModal')">
+<div class="portal-icon">🏷️</div>
+<div>
+<h3>ሻጭ</h3>
+<p>ማሽን ወይም የከባድ መኪና መሸጥ እፈልጋለሁ</p>
+</div>
+</div>
+
+<!-- Option 3: ተከራይ / ገዢ -->
+<div class="portal-card" onclick="openForm('buyerModal')">
+<div class="portal-icon">🔑</div>
+<div>
+<h3>ተከራይ / ገዢ</h3>
+<p>ማሽን መከራየት ወይም መግዛት እፈልጋለሁ</p>
+</div>
+</div>
+
+<!-- Option 4: ቀጣሪ -->
+<div class="portal-card" onclick="openForm('employerModal')">
+<div class="portal-icon">💼</div>
+<div>
+<h3>ቀጣሪ (የሰው ኃይል ፈላጊ)</h3>
+<p>ኦፕሬተር፣ ሾፌር፣ ኢንጂነር ወይም ፎርማን እፈልጋለሁ</p>
+</div>
+</div>
+
+<!-- Option 5: ተቀጣሪ (ስራ ፈላጊ) -->
+<div class="portal-card" onclick="openForm('jobSeekerModal')">
+<div class="portal-icon">👷</div>
+<div>
+<h3>ተቀጣሪ (ስራ ፈላጊ)</h3>
+<p>የስራ ልምድዎን እና CV ይመዝግቡ</p>
+</div>
+</div>
+
+</div>
+
+<div class="manager-btn-wrap">
+<button class="btn-manager" onclick="openForm('managerModal')">ለማናጀር / Contact Manager (1,500 ETB)</button>
+</div>
+</section>
+
+<!-- ================= 1. የአከራይ ፎርም ================= -->
+<div id="lessorModal" class="modal-overlay">
+<div class="modal-body">
+<span class="close-modal" onclick="closeForm('lessorModal')">×</span>
+<h2>የማሽን ማከራያ ፎርም (አከራይ)</h2>
+<form onsubmit="submitForm(event, 'አከራይ (Lessor)')">
+<div class="form-group">
+<label>ሙሉ ስም:</label>
+<input type="text" required placeholder="ስምዎን ያስገቡ">
+</div>
+<div class="form-group">
+<label>ስልክ ቁጥር:</label>
+<input type="tel" required placeholder="09...">
+</div>
+<div class="form-group">
+<label>የማሽኑ አይነት:</label>
+<select required>
+<option value="">-- ማሽን ይምረጡ --</option>
+<option value="Excavator">Excavator (ኤክስካቫተር)</option>
+<option value="Dozer">Dozer (ዶዘር)</option>
+<option value="Loader">Loader (ሎደር)</option>
+<option value="Grader">Grader (ግሬደር)</option>
+<option value="Dump Truck / Sino">Dump Truck (ሲኖትራክ / ዱምፐር)</option>
+<option value="Crane">Crane (ክሬን)</option>
+<option value="Roller">Compactor Roller (ሮለር)</option>
+<option value="Mixer Truck">Concrete Mixer (ኮንክሪት ሚክሰር)</option>
+<option value="Other">ሌላ ማሽን</option>
+</select>
+</div>
+<div class="form-group">
+<label>የማሽኑ ሞዴል እና የት ይገኛል?:</label>
+<input type="text" required placeholder="ምሳሌ፦ CAT 320, አዲስ አበባ">
+</div>
+<button type="submit" class="submit-btn">መረጃውን በ WhatsApp ላክ</button>
+</form>
+</div>
+</div>
+
+<!-- ================= 2. የሻጭ ፎርም ================= -->
+<div id="sellerModal" class="modal-overlay">
+<div class="modal-body">
+<span class="close-modal" onclick="closeForm('sellerModal')">×</span>
+<h2>የማሽን መሸጫ ፎርም (ሻጭ)</h2>
+<form onsubmit="submitForm(event, 'ሻጭ (Seller)')">
+<div class="form-group">
+<label>ሙሉ ስም:</label>
+<input type="text" required placeholder="ስምዎን ያስገቡ">
+</div>
+<div class="form-group">
+<label>ስልክ ቁጥር:</label>
+<input type="tel" required placeholder="09...">
+</div>
+<div class="form-group">
+<label>የሚሸጠው ማሽን/ተሽከርካሪ:</label>
+<select required>
+<option value="">-- ማሽን ይምረጡ --</option>
+<option value="Excavator">Excavator</option>
+<option value="Dozer">Dozer</option>
+<option value="Loader">Loader</option>
+<option value="Sino Truck">Sino Truck / Dump Truck</option>
+<option value="Grader">Grader</option>
+<option value="Other">ሌላ ማሽን</option>
+</select>
+</div>
+<div class="form-group">
+<label>የማሽኑ ሞዴል/ዓመተ ምህረት:</label>
+<input type="text" placeholder="ምሳሌ፦ 2018 model">
+</div>
+<div class="form-group">
+<label>የሚሸጡበት ዋጋ (ETB):</label>
+<input type="text" required placeholder="ዋጋ ያስገቡ">
+</div>
+<button type="submit" class="submit-btn">መረጃውን በ WhatsApp ላክ</button>
+</form>
+</div>
+</div>
+
+<!-- ================= 3. የተከራይ / ገዢ ፎርም ================= -->
+<div id="buyerModal" class="modal-overlay">
+<div class="modal-body">
+<span class="close-modal" onclick="closeForm('buyerModal')">×</span>
+<h2>የማሽን ኪራይ/ግዢ መጠየቂያ</h2>
+<form onsubmit="submitForm(event, 'ተከራይ/ገዢ')">
+<div class="form-group">
+<label>ስም:</label>
+<input type="text" required placeholder="ስምዎን ያስገቡ">
+</div>
+<div class="form-group">
+<label>ስልክ ቁጥር:</label>
+<input type="tel" required placeholder="09...">
+</div>
+<div class="form-group">
+<label>የሚፈልጉት አገልግሎት:</label>
+<select required>
+<option value="መከራየት">ማሽን መከራየት እፈልጋለሁ</option>
+<option value="መግዛት">ማሽን መግዛት እፈልጋለሁ</option>
+</select>
+</div>
+<div class="form-group">
+<label>የሚፈልጉት የማሽን አይነት:</label>
+<select required>
+<option value="">-- ማሽን ይምረጡ --</option>
+<option value="Excavator">Excavator (ኤክስካቫተር)</option>
+<option value="Dozer">Dozer (ዶዘር)</option>
+<option value="Loader">Loader (ሎደር)</option>
+<option value="Grader">Grader (ግሬደር)</option>
+<option value="Dump Truck">Dump Truck (ሲኖትራክ)</option>
+<option value="Crane">Crane (ክሬን)</option>
+<option value="Other">ሌላ</option>
+</select>
+</div>
+<button type="submit" class="submit-btn">ጥያቄውን በ WhatsApp ላክ</button>
+</form>
+</div>
+</div>
+
+<!-- ================= 4. የቀጣሪ ፎርም ================= -->
+<div id="employerModal" class="modal-overlay">
+<div class="modal-body">
+<span class="close-modal" onclick="closeForm('employerModal')">×</span>
+<h2>የሰው ኃይል መጠየቂያ (ቀጣሪ)</h2>
+<form onsubmit="submitForm(event, 'ቀጣሪ (Employer)')">
+<div class="form-group">
+<label>የድርጅቱ / የግለሰቡ ስም:</label>
+<input type="text" required placeholder="ስም ያስገቡ">
+</div>
+<div class="form-group">
+<label>ስልክ ቁጥር:</label>
+<input type="tel" required placeholder="09...">
+</div>
+<div class="form-group">
+<label>የሚፈልጉት የሙያ ዘርፍ:</label>
+<select required>
+<option value="">-- ሙያ ይምረጡ --</option>
+<option value="Operator">የማሽን ኦፕሬተር (Operator)</option>
+<option value="Driver">የከባድ መኪና ሾፌር (Driver)</option>
+<option value="Site Engineer">ሳይት ኢንጂነር (Site Engineer)</option>
+<option value="Office Engineer">ኦፊስ ኢንጂነር (Office Engineer)</option>
+<option value="Foreman">ፎርማን (Foreman)</option>
+<option value="Laborer">ቀን ሰራተኛ / ሌላ</option>
+</select>
+</div>
+<div class="form-group">
+<label>የሰራተኛ ብዛት እና የስራ ቦታ:</label>
+<input type="text" required placeholder="ምሳሌ፦ 2 ኤክስካቫተር ኦፕሬተር፣ አዳማ">
+</div>
+<button type="submit" class="submit-btn">ጥያቄውን በ WhatsApp ላክ</button>
+</form>
+</div>
+</div>
+
+<!-- ================= 5. የተቀጣሪ (ስራ ፈላጊ + CV) ፎርም ================= -->
+<div id="jobSeekerModal" class="modal-overlay">
+<div class="modal-body">
+<span class="close-modal" onclick="closeForm('jobSeekerModal')">×</span>
+<h2>የስራ ፈላጊዎች ምዝገባ (ተቀጣሪ)</h2>
+<form onsubmit="submitJobSeeker(event)">
+<div class="form-group">
+<label>ሙሉ ስም:</label>
+<input type="text" id="jsName" required placeholder="ስምዎን ያስገቡ">
+</div>
+<div class="form-group">
+<label>ስልክ ቁጥር:</label>
+<input type="tel" id="jsPhone" required placeholder="09...">
+</div>
+<div class="form-group">
+<label>የሙያ ዘርፍ:</label>
+<select id="jsRole" required onchange="checkRole(this.value)">
+<option value="">-- ሙያዎን ይምረጡ --</option>
+<option value="ኦፕሬተር">የማሽን ኦፕሬተር (Operator)</option>
+<option value="ሾፌር">የከባድ መኪና ሾፌር (Driver)</option>
+<option value="ሳይት ኢንጂነር">ሳይት ኢንጂነር (Site Engineer)</option>
+<option value="ኦፊስ ኢንጂነር">ኦፊስ ኢንጂነር (Office Engineer)</option>
+<option value="ፎርማን">ፎርማን (Foreman)</option>
+<option value="ሌላ">ሌላ ሙያ</option>
+</select>
+</div>
+
+<div class="form-group" id="opSubGroup" style="display: none;">
+<label>የምን ማሽን ኦፕሬተር ነዎት?:</label>
+<select id="jsOpType">
+<option value="Excavator Operator">የኤክስካቫተር (Excavator)</option>
+<option value="Dozer Operator">የዶዘር (Dozer)</option>
+<option value="Loader Operator">የሎደር (Loader)</option>
+<option value="Grader Operator">የግሬደር (Grader)</option>
+<option value="Crane Operator">የክሬን (Crane)</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>የስራ ልምድ (በዓመት):</label>
+<input type="text" id="jsExp" required placeholder="ምሳሌ፦ 3 ዓመት">
+</div>
+
+<div class="form-group">
+<label>CV ወይም የመንጃ ፍቃድ/የትምህርት ማስረጃ (Attach File):</label>
+<input type="file" id="jsFile" accept="image/,.pdf,.doc,.docx">
+<small style="color:#aaa; font-size:11px;"> CV ፋይል ካለዎት ይምረጡ (በ WhatsApp አያይዘው ይልኩታል)</small>
+</div>
+
+<button type="submit" class="submit-btn">መረጃውን በ WhatsApp ላክ</button>
+</form>
+</div>
+</div>
+
+<!-- ================= 6. MANAGER MODAL ================= -->
+<div id="managerModal" class="modal-overlay">
+<div class="modal-body" style="text-align: center;">
+<span class="close-modal" onclick="closeForm('managerModal')">×</span>
+<h2>ከማናጀር ጋር በቀጥታ ለመገናኘት</h2>
+<div style="background: #242834; padding: 15px; border-radius: 8px; margin: 15px 0; text-align: left;">
+<p><strong>💵 የአገልግሎት ክፍያ:</strong> <span style="color:var(--primary); font-weight:bold;">1,500 ETB</span></p>
+<p><strong>📊 ኮሚሽን:</strong> ኪራይ 10% | ሽያጭና ግዢ 1%</p>
+</div>
+<div style="background: #1e88e5; padding: 15px; border-radius: 8px;">
+<p style="color:white; font-weight:bold;">የቴሌብር ቁጥር፦ 0930853279</p>
+<a href="tel:127110930853279*1500%23" style="color: yellow; display: block; margin-top: 10px; text-decoration: underline; font-weight: bold;">
+📲 በቴሌብር በቀጥታ ለመክፈል እዚህ ይጫኑ
+</a>
+</div>
+</div>
+</div>
+
+<footer>
+<p>© 2026 Sor Construction. All Rights Reserved.</p>
+<p>የግንባታ ማሽነሪዎች ኪራይ፣ ሽያጭ እና የሰው ኃይል ማቅረብ</p>
+</footer>
+
+<!-- JavaScript Functions -->
+<script>
+function openForm(id) {
+document.getElementById(id).style.display = 'flex';
+}
+
+function closeForm(id) {
+document.getElementById(id).style.display = 'none';
+}
+
+function checkRole(val) {
+const opGroup = document.getElementById('opSubGroup');
+if (val === 'ኦፕሬተር') {
+opGroup.style.display = 'block';
+} else {
+opGroup.style.display = 'none';
+}
+}
+
+function submitForm(event, title) {
+event.preventDefault();
+const form = event.target;
+const inputs = form.querySelectorAll('input, select');
+let message = ሰላም Sor Construction%0A%0Aአዲስ የ *${title}* ጥያቄ፦%0A`;
+
+inputs.forEach(input => {
+if(input.value) {
+const label = input.previousElementSibling ? input.previousElementSibling.innerText : 'መረጃ';
+message += •${label} ${input.value}%0A;
+}
+});
+
+window.open(https://wa.me/251930853279?text=${message}`, '_blank');
+}
+
+function submitJobSeeker(event) {
+event.preventDefault();
+const name = document.getElementById('jsName').value;
+const phone = document.getElementById('jsPhone').value;
+let role = document.getElementById('jsRole').value;
+const exp = document.getElementById('jsExp').value;
+const file = document.getElementById('jsFile');
+
+if (role === 'ኦፕሬተር') {
+role = document.getElementById('jsOpType').value;
+}
+
+let message = ሰላም Sor Construction%0A%0Aአዲስ የ *ስራ ፈላጊ (ተቀጣሪ)* ምዝገባ፦%0A;
+message += • ስም: ${name}%0A; message +=• ስልክ: ${phone}%0A;
+message += • ሙያ: ${role}%0A; message +=• የልምድ ዘመን: ${exp}%0A;
+
+if (file.files.length > 0) {
+message += %0A*(ማሳሰቢያ፦ የ CV / ማስረጃ ፋይል በ WhatsApp አያይዤ እልካለሁ)*;
+}
+
+alert('መረጃው ተዘጋጅቷል! እሺ ሲሉ ወደ WhatsApp ይመራሉ፤ ፋይል ካለዎት አያይዘው ይላኩ።');
+window.open(https://wa.me/251930853279?text=${message}, '_blank');
+}
+</script>
+</body>
+</html>
